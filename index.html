@@ -1,0 +1,440 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+#hs-page {
+  --gold:#ffd38e;
+  box-sizing:border-box;
+  position:relative;
+  isolation:isolate;
+  width:100%;
+  min-height:100vh;
+  overflow:hidden;
+  background:#050909;
+  color:#fff;
+  font-family:Poppins,Arial,sans-serif;
+}
+#hs-page * { box-sizing:border-box; }
+#hs-page a { text-decoration:none; }
+#hs-page .hs-bg {
+  position:absolute; inset:0; z-index:-3;
+  background:
+    radial-gradient(ellipse at 50% 15%,#314b4b 0%,transparent 43%),
+    radial-gradient(ellipse at 90% 75%,#563d2b 0%,transparent 40%),
+    #050909;
+}
+#hs-page .hs-bg:before,
+#hs-page .hs-bg:after {
+  content:""; position:absolute;
+  width:650px; height:650px;
+  border-radius:50%; filter:blur(85px);
+  opacity:.55;
+  animation:hsMove 12s ease-in-out infinite alternate;
+}
+#hs-page .hs-bg:before {
+  top:-270px; left:-240px;
+  background:radial-gradient(circle,#23d9c090,transparent 65%);
+}
+#hs-page .hs-bg:after {
+  top:14%; right:-270px;
+  background:radial-gradient(circle,#ffac5680,transparent 65%);
+  animation-delay:-6s;
+}
+#hs-page .hs-grid {
+  position:absolute; inset:0; z-index:-2;
+  pointer-events:none; opacity:.2;
+  background-image:
+    linear-gradient(#b3fff01e 1px,transparent 1px),
+    linear-gradient(90deg,#b3fff01e 1px,transparent 1px);
+  background-size:58px 58px;
+  mask-image:linear-gradient(#000,transparent 80%);
+}
+#hs-page .hs-beam {
+  position:absolute; z-index:-1;
+  top:-25%; width:2px; height:160%;
+  transform:rotate(28deg);
+  pointer-events:none;
+  background:linear-gradient(transparent,#a4ffe080,transparent);
+  box-shadow:0 0 35px #89ffe9;
+  animation:hsBeam 9s linear infinite;
+}
+#hs-page .hs-beam.one { left:15%; }
+#hs-page .hs-beam.two {
+  left:75%; animation-delay:-5s;
+  background:linear-gradient(transparent,#ffd19180,transparent);
+  box-shadow:0 0 35px #ffd191;
+}
+#hs-page .hs-wrap {
+  width:min(1120px,calc(100% - 36px));
+  margin:auto;
+}
+#hs-page .hs-nav {
+  display:flex; align-items:center; justify-content:space-between;
+  min-height:76px; border-bottom:1px solid #ffffff24;
+  font-size:13px; font-weight:800; letter-spacing:1px;
+}
+#hs-page .hs-nav span { color:var(--gold); }
+#hs-page .hs-nav small {
+  color:#c2c8c1; font-size:10px; letter-spacing:2px;
+}
+#hs-page .hs-hero {
+  padding:65px 0 88px; text-align:center;
+}
+#hs-page .hs-chip {
+  display:inline-block; padding:9px 17px;
+  border:1px solid #e7c18c88;
+  border-radius:99px;
+  background:#e1b16e18;
+  color:#ffe4b9;
+  font-size:10px; font-weight:700; letter-spacing:2px;
+  box-shadow:0 0 25px #e7b67c26;
+}
+#hs-page .hs-logo {
+  position:relative; width:235px; height:235px;
+  display:grid; place-items:center;
+  margin:32px auto;
+}
+#hs-page .hs-logo:before {
+  content:""; position:absolute; inset:0;
+  border-radius:50%;
+  background:conic-gradient(
+    transparent 8%,#86ffe3 24%,transparent 38%,
+    #ffd08b 56%,transparent 72%,#86ffe3 86%,transparent
+  );
+  filter:blur(13px);
+  animation:hsSpin 7s linear infinite;
+}
+#hs-page .hs-logo:after {
+  content:""; position:absolute; inset:8px;
+  border:2px solid transparent;
+  border-top-color:#9bffe7;
+  border-bottom-color:#ffd18f;
+  border-radius:50%;
+  box-shadow:0 0 30px #9bffe766;
+  animation:hsSpin 7s linear infinite;
+}
+#hs-page .hs-ring {
+  position:absolute; inset:-12px;
+  border:1px dashed #ffd28e99;
+  border-radius:50%;
+  animation:hsSpin 24s linear infinite reverse;
+}
+#hs-page .hs-ring:before {
+  content:""; position:absolute;
+  width:10px; height:10px;
+  top:12px; left:38px;
+  border-radius:50%;
+  background:#a2ffe3;
+  box-shadow:0 0 20px 7px #69f8d5;
+}
+#hs-page .hs-logo img {
+  position:relative; z-index:2;
+  width:190px; height:190px;
+  border-radius:50%; object-fit:cover;
+  border:3px solid #ffd08e;
+  box-shadow:0 0 0 7px #080b0a,0 0 45px #ffc77e99;
+  animation:hsPulse 4s ease-in-out infinite;
+}
+#hs-page .hs-overline {
+  color:#9cf3d9; font-size:11px;
+  font-weight:700; letter-spacing:3px;
+}
+#hs-page h1 {
+  max-width:1000px;
+  margin:14px auto 20px;
+  font-size:clamp(40px,8vw,92px);
+  line-height:1.07; letter-spacing:-.055em;
+  font-weight:900; text-transform:uppercase;
+}
+#hs-page h1 span {
+  display:block;
+  background:linear-gradient(100deg,#fff2d1,#ffb66b,#fff2d1);
+  background-size:220% auto;
+  background-clip:text;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:hsShine 5s linear infinite;
+}
+#hs-page .hs-lead {
+  max-width:660px; margin:0 auto;
+  color:#cbd4cf; font-size:16px; line-height:1.85;
+}
+#hs-page .hs-lead strong { color:#fff; }
+#hs-page .hs-button {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:57px; margin-top:29px; padding:15px 28px;
+  border-radius:12px;
+  background:linear-gradient(110deg,#ffe8b9,#ffc078,#e9a360);
+  color:#18120c;
+  font-size:12px; font-weight:800; letter-spacing:1px;
+  box-shadow:0 12px 32px #f1ac6470;
+  transition:transform .3s,box-shadow .3s;
+}
+#hs-page .hs-button:hover {
+  transform:translateY(-6px) scale(1.04);
+  box-shadow:0 21px 45px #f1ac64a0;
+}
+#hs-page .hs-note {
+  margin-top:17px; color:#b4c2b9;
+  font-size:11px; letter-spacing:1px;
+}
+#hs-page .hs-strip {
+  border-top:1px solid #ffffff35;
+  border-bottom:1px solid #ffffff35;
+  background:#ffffff0d;
+  padding:17px; text-align:center;
+  color:#ffdfaa; font-size:11px;
+  font-weight:700; letter-spacing:2px;
+}
+#hs-page .hs-section { padding:86px 0 70px; }
+#hs-page .hs-label {
+  color:#9cf3d9; font-size:11px;
+  font-weight:700; letter-spacing:3px;
+}
+#hs-page h2 {
+  margin:13px 0 17px;
+  font-size:clamp(32px,5vw,54px);
+  line-height:1.2; letter-spacing:-.04em;
+}
+#hs-page .hs-intro {
+  max-width:680px; color:#bec8c1;
+  line-height:1.85; font-size:14px;
+}
+#hs-page .hs-cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px; margin-top:34px;
+}
+#hs-page .hs-card {
+  min-height:220px; padding:27px;
+  border:1px solid #d4ba8755;
+  border-radius:20px;
+  background:linear-gradient(145deg,#273431,#101716);
+  box-shadow:0 15px 35px #0006;
+  transition:transform .35s,border-color .35s,box-shadow .35s;
+}
+#hs-page .hs-card:hover {
+  transform:translateY(-10px);
+  border-color:#ffda9a;
+  box-shadow:0 25px 45px #0009,0 0 28px #eabe7955;
+}
+#hs-page .hs-icon {
+  display:grid; place-items:center;
+  width:48px; height:48px; margin-bottom:20px;
+  border:1px solid #ffd18b77;
+  border-radius:12px;
+  background:#ffd18b1a;
+  color:#ffd18b; font-size:25px;
+}
+#hs-page .hs-card h3 { margin:0 0 9px; font-size:17px; }
+#hs-page .hs-card p {
+  margin:0; color:#c0c9c1;
+  font-size:13px; line-height:1.8;
+}
+#hs-page .hs-feature {
+  display:grid; grid-template-columns:1.1fr .9fr;
+  align-items:center; gap:45px;
+  margin-top:70px; padding:45px;
+  border:1px solid #e7bf7a66;
+  border-radius:25px;
+  background:linear-gradient(120deg,#1c2926,#201b15);
+  box-shadow:0 25px 65px #0007;
+}
+#hs-page .hs-feature p {
+  color:#c0cbc2; font-size:14px; line-height:1.9;
+}
+#hs-page .hs-step {
+  padding:15px 0;
+  border-bottom:1px solid #e7c78c55;
+  font-size:14px;
+}
+#hs-page .hs-step b {
+  display:inline-grid; place-items:center;
+  width:31px; height:31px; margin-right:12px;
+  border-radius:50%; background:#e7c78c33;
+  color:#ffdc9d; font-size:11px;
+}
+#hs-page .hs-final {
+  padding:70px 15px 95px; text-align:center;
+}
+#hs-page .hs-final p {
+  max-width:550px; margin:auto;
+  color:#c1ccc2; font-size:14px; line-height:1.8;
+}
+#hs-page .hs-footer {
+  padding:23px; text-align:center;
+  border-top:1px solid #ffffff30;
+  color:#adb9af; font-size:11px; letter-spacing:2px;
+}
+#hs-page .hs-footer b { color:#ffd18d; }
+#hs-page .hs-reveal {
+  opacity:0; transform:translateY(25px);
+  transition:opacity .7s,transform .7s;
+}
+#hs-page .hs-reveal.show { opacity:1; transform:none; }
+
+@keyframes hsMove {
+  to { transform:translate(160px,90px) scale(1.2); }
+}
+@keyframes hsBeam {
+  from { transform:translateX(-230px) rotate(28deg); }
+  to { transform:translateX(350px) rotate(28deg); }
+}
+@keyframes hsSpin { to { transform:rotate(360deg); } }
+@keyframes hsPulse {
+  50% { transform:scale(1.04); box-shadow:0 0 0 7px #080b0a,0 0 70px #ffd08ecc; }
+}
+@keyframes hsShine { to { background-position:220% 0; } }
+
+@media(max-width:700px) {
+  #hs-page .hs-nav { min-height:63px; font-size:10px; }
+  #hs-page .hs-nav small { font-size:8px; letter-spacing:1px; }
+  #hs-page .hs-hero { padding:58px 0 75px; }
+  #hs-page .hs-logo { width:200px; height:200px; }
+  #hs-page .hs-logo img { width:160px; height:160px; }
+  #hs-page .hs-overline { font-size:9px; letter-spacing:2px; }
+  #hs-page h1 { font-size:clamp(39px,10vw,62px); }
+  #hs-page .hs-lead { font-size:14px; }
+  #hs-page .hs-button { width:min(100%,340px); font-size:11px; }
+  #hs-page .hs-strip { font-size:9px; letter-spacing:1px; }
+  #hs-page .hs-section { padding:66px 0 55px; }
+  #hs-page .hs-cards { grid-template-columns:1fr; gap:14px; }
+  #hs-page .hs-card { min-height:0; padding:23px; }
+  #hs-page .hs-feature {
+    grid-template-columns:1fr;
+    padding:27px 22px; gap:15px; margin-top:52px;
+  }
+  #hs-page .hs-final { padding:65px 10px 85px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #hs-page *,#hs-page *:before,#hs-page *:after {
+    animation:none!important; transition:none!important;
+  }
+  #hs-page .hs-reveal { opacity:1; transform:none; }
+}
+</style>
+
+<div id="hs-page">
+  <div class="hs-bg"></div>
+  <div class="hs-grid"></div>
+  <div class="hs-beam one"></div>
+  <div class="hs-beam two"></div>
+
+  <div class="hs-wrap">
+    <div class="hs-nav">
+      <div>HURRICANE <span>✦</span> SURESHOTS</div>
+      <small>THE COMMUNITY</small>
+    </div>
+
+    <section class="hs-hero hs-reveal">
+      <div class="hs-chip">✦ THE NEXT WAVE STARTS HERE</div>
+
+      <div class="hs-logo">
+        <div class="hs-ring"></div>
+        <img alt="Hurricane of Sureshots logo" src="data:image/webp;base64,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">
+      </div>
+
+      <div class="hs-overline">A COMMUNITY THAT MOVES TOGETHER</div>
+      <h1>HURRICANE OF <span>SURESHOTS</span></h1>
+
+      <p class="hs-lead">
+        Stay connected with a community full of energy.
+        <strong>Join for fresh daily updates</strong>, new posts and
+        announcements, and be part of the conversation.
+      </p>
+
+      <a class="hs-button"
+         href="https://t.me/+RpEUSyfWc_Q3YTg1"
+         target="_blank" rel="noopener noreferrer">
+        JOIN TELEGRAM COMMUNITY &nbsp; ↗
+      </a>
+
+      <div class="hs-note">✦ DAILY UPDATES &nbsp; ✦ NEW POSTS &nbsp; ✦ COMMUNITY</div>
+    </section>
+  </div>
+
+  <div class="hs-strip">
+    ✦ DAILY UPDATES &nbsp;&nbsp; ✦ COMMUNITY FIRST &nbsp;&nbsp; ✦ STAY CONNECTED
+  </div>
+
+  <div class="hs-wrap">
+    <section class="hs-section hs-reveal">
+      <div class="hs-label">WHAT YOU'LL FIND INSIDE</div>
+      <h2>More than a channel.<br>A place to stay connected.</h2>
+      <p class="hs-intro">
+        There is always something new to catch up on. Open the community
+        to see recent posts, follow announcements, and stay in the loop.
+      </p>
+
+      <div class="hs-cards">
+        <div class="hs-card">
+          <div class="hs-icon">✦</div>
+          <h3>New updates every day</h3>
+          <p>Check in regularly for fresh posts and the latest community updates.</p>
+        </div>
+        <div class="hs-card">
+          <div class="hs-icon">◉</div>
+          <h3>One dedicated space</h3>
+          <p>Follow community conversations and new announcements in one place.</p>
+        </div>
+        <div class="hs-card">
+          <div class="hs-icon">↗</div>
+          <h3>Easy to join</h3>
+          <p>Tap the button, open Telegram, and become part of the community.</p>
+        </div>
+      </div>
+
+      <div class="hs-feature">
+        <div>
+          <div class="hs-label">STAY IN THE LOOP</div>
+          <h2>Fresh energy.<br>Every single day.</h2>
+          <p>
+            Follow the newest community posts whenever you want.
+            Join now and make it part of your daily check-in.
+          </p>
+        </div>
+        <div>
+          <div class="hs-step"><b>01</b> Open the Telegram channel</div>
+          <div class="hs-step"><b>02</b> Join the community</div>
+          <div class="hs-step"><b>03</b> Catch up with new posts</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hs-final hs-reveal">
+      <div class="hs-label">YOUR INVITATION IS HERE</div>
+      <h2>Ready to join the hurricane?</h2>
+      <p>Be part of the community and stay close to every new update.</p>
+      <a class="hs-button"
+         href="https://t.me/+RpEUSyfWc_Q3YTg1"
+         target="_blank" rel="noopener noreferrer">
+        JOIN TELEGRAM COMMUNITY &nbsp; ↗
+      </a>
+    </section>
+  </div>
+
+  <div class="hs-footer">ADS BY <b>FLOX ADS</b></div>
+</div>
+
+<script>
+(function () {
+  var page = document.getElementById('hs-page');
+  if (!page) return;
+  var items = page.querySelectorAll('.hs-reveal');
+
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function (item) { item.classList.add('show'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  items.forEach(function (item) { observer.observe(item); });
+})();
+</script>
