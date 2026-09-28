@@ -1,195 +1,651 @@
-<style>
-/* Full-width page: Systeme.io container ki side spacing hatao */
-html {
-  overflow-x: hidden !important;
-  background: #050909 !important;
-}
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-body {
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+html, body {
   margin: 0 !important;
   overflow-x: hidden !important;
-  background: #050909 !important;
+  background: #060a09 !important;
 }
 
-#hs-page {
-  display: block !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
-  min-width: 0 !important;
-  margin-left: calc(50% - 50vw) !important;
-  margin-right: calc(50% - 50vw) !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  overflow: hidden !important;
-  background: #050909 !important;
+#hurricane {
+  --gold: #ffd69b;
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 100vh;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+  border: 0;
+  outline: 0;
+  background: #060a09;
+  color: #fff;
+  font-family: 'Poppins', Arial, sans-serif;
 }
 
-/* Seedhi grid lines aur light beams hatao */
-#hs-page .hs-grid,
-#hs-page .hs-beam {
-  display: none !important;
-}
+#hurricane * { box-sizing: border-box; }
+#hurricane a { text-decoration: none; }
 
-/* Soft moving lights wala background */
-#hs-page .hs-bg {
+#hurricane .ambient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background:
-    radial-gradient(circle at 50% 12%, #254b45 0%, transparent 42%),
-    radial-gradient(circle at 75% 55%, #3d2b21 0%, transparent 40%),
-    #050909 !important;
+    radial-gradient(ellipse at 50% 12%, #24443c 0%, transparent 43%),
+    radial-gradient(ellipse at 80% 58%, #38291e 0%, transparent 42%),
+    #060a09;
 }
 
-#hs-page .hs-bg:before {
-  top: -180px !important;
-  left: -230px !important;
-  width: 520px !important;
-  height: 520px !important;
-  background: radial-gradient(circle, #1cc7a476, transparent 68%) !important;
-  filter: blur(75px) !important;
+#hurricane .ambient::before,
+#hurricane .ambient::after {
+  content: "";
+  position: absolute;
+  width: 570px;
+  height: 570px;
+  border-radius: 50%;
+  filter: blur(85px);
+  animation: floatLight 13s ease-in-out infinite alternate;
 }
 
-#hs-page .hs-bg:after {
-  top: 35% !important;
-  right: -230px !important;
-  width: 480px !important;
-  height: 480px !important;
-  background: radial-gradient(circle, #e68d4770, transparent 68%) !important;
-  filter: blur(85px) !important;
+#hurricane .ambient::before {
+  top: -220px;
+  left: -200px;
+  background: radial-gradient(circle, #21c7a669, transparent 65%);
 }
 
-/* Sections par koi white border nahi */
-#hs-page .hs-nav,
-#hs-page .hs-strip,
-#hs-page .hs-footer {
-  border-color: #cba96e38 !important;
+#hurricane .ambient::after {
+  top: 37%;
+  right: -240px;
+  background: radial-gradient(circle, #eaa15f66, transparent 65%);
+  animation-delay: -7s;
 }
 
+#hurricane .container {
+  width: min(1120px, calc(100% - 36px));
+  margin: 0 auto;
+}
+
+#hurricane .nav {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #e6c99030;
+}
+
+#hurricane .brand {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+#hurricane .brand span { color: var(--gold); }
+
+#hurricane .nav-note {
+  color: #b8c5bc;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+#hurricane .hero {
+  padding: 58px 0 85px;
+  text-align: center;
+}
+
+#hurricane .chip {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid #f4ca8a80;
+  border-radius: 100px;
+  background: #e8b77918;
+  box-shadow: 0 0 22px #e8b77922;
+  color: #ffe2b6;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+
+#hurricane .logo-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 220px;
+  height: 220px;
+  margin: 30px auto 28px;
+}
+
+#hurricane .logo-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    transparent 8%,
+    #84f4d6 24%,
+    transparent 39%,
+    #ffd18d 55%,
+    transparent 72%,
+    #84f4d6 88%,
+    transparent
+  );
+  filter: blur(12px);
+  animation: rotateGlow 8s linear infinite;
+}
+
+#hurricane .logo-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 2px solid transparent;
+  border-top-color: #90f6da;
+  border-bottom-color: #ffd394;
+  border-radius: 50%;
+  animation: rotateGlow 8s linear infinite;
+}
+
+#hurricane .logo-ring {
+  position: absolute;
+  inset: -10px;
+  border: 1px dashed #ffd28e80;
+  border-radius: 50%;
+  animation: rotateGlow 25s linear infinite reverse;
+}
+
+#hurricane .logo-ring::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 38px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #a4ffe2;
+  box-shadow: 0 0 18px 6px #72eec9;
+}
+
+#hurricane .logo-wrap img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 175px;
+  height: 175px;
+  object-fit: cover;
+  border: 3px solid #f8cf92;
+  border-radius: 50%;
+  box-shadow: 0 0 0 7px #090e0c, 0 0 45px #f4bf7480;
+  animation: logoPulse 4s ease-in-out infinite;
+}
+
+#hurricane .overline {
+  color: #9cebd0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+#hurricane h1 {
+  max-width: 1000px;
+  margin: 14px auto 18px;
+  font-size: clamp(42px, 8vw, 90px);
+  font-weight: 900;
+  line-height: 1.07;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+#hurricane h1 span {
+  display: block;
+  background: linear-gradient(100deg, #fff1ce, #ffb76c, #fff1ce);
+  background-size: 220% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: textGlow 6s linear infinite;
+}
+
+#hurricane .hero-text {
+  max-width: 670px;
+  margin: 0 auto;
+  color: #c5d0c7;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+#hurricane .hero-text strong { color: #fff; }
+
+#hurricane .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  margin-top: 28px;
+  padding: 15px 29px;
+  border-radius: 12px;
+  background: linear-gradient(110deg, #ffe8ba, #ffc37d, #e8a363);
+  box-shadow: 0 12px 32px #eaa56360;
+  color: #1a120b;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+#hurricane .button:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 43px #f3b17290;
+}
+
+#hurricane .hero-small {
+  margin: 17px 0 0;
+  color: #aebdb1;
+  font-size: 11px;
+}
+
+#hurricane .bar {
+  padding: 16px;
+  border-top: 1px solid #e5c28a3c;
+  border-bottom: 1px solid #e5c28a3c;
+  background: #ffffff0a;
+  color: #ffdfa9;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-align: center;
+}
+
+#hurricane .section { padding: 80px 0 65px; }
+
+#hurricane .label {
+  color: #9cebd0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+#hurricane h2 {
+  margin: 12px 0 16px;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.18;
+  letter-spacing: -.04em;
+}
+
+#hurricane .intro {
+  max-width: 660px;
+  color: #becac0;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+#hurricane .cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+  margin-top: 32px;
+}
+
+#hurricane .card {
+  min-height: 215px;
+  padding: 25px;
+  border: 1px solid #e5c28a48;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #25342e, #111a17);
+  box-shadow: 0 15px 35px #0005;
+  transition: transform .35s, border-color .35s, box-shadow .35s;
+}
+
+#hurricane .card:hover {
+  transform: translateY(-8px);
+  border-color: #ffd697;
+  box-shadow: 0 23px 43px #0008, 0 0 25px #e8bc7950;
+}
+
+#hurricane .icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 19px;
+  border: 1px solid #f5ce8d70;
+  border-radius: 12px;
+  background: #f5ce8d15;
+  color: #ffda9d;
+  font-size: 23px;
+}
+
+#hurricane .card h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+#hurricane .card p {
+  margin: 0;
+  color: #c0c9c0;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+#hurricane .feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  margin-top: 65px;
+  padding: 42px;
+  border: 1px solid #e6c38665;
+  border-radius: 23px;
+  background: linear-gradient(120deg, #1b2a24, #211d17);
+}
+
+#hurricane .feature p {
+  color: #c2ccc1;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+#hurricane .step {
+  padding: 14px 0;
+  border-bottom: 1px solid #e6c38640;
+  font-size: 14px;
+}
+
+#hurricane .step b {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: #e6c3862e;
+  color: #ffda9e;
+  font-size: 11px;
+}
+
+#hurricane .final {
+  padding: 70px 0 88px;
+  text-align: center;
+}
+
+#hurricane .final p {
+  max-width: 540px;
+  margin: 0 auto;
+  color: #c0ccc1;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+#hurricane .footer {
+  padding: 22px;
+  border-top: 1px solid #e6c38635;
+  color: #aab8ac;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+#hurricane .footer strong { color: var(--gold); }
+
+#hurricane .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s, transform .7s;
+}
+
+#hurricane .reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes floatLight {
+  to { transform: translate(130px, 90px) scale(1.15); }
+}
+@keyframes rotateGlow {
+  to { transform: rotate(360deg); }
+}
+@keyframes logoPulse {
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 0 0 7px #090e0c, 0 0 65px #f4bf74bd;
+  }
+}
+@keyframes textGlow {
+  to { background-position: 220% 0; }
+}
+
+/* Phone layout */
 @media (max-width: 700px) {
-  #hs-page .hs-wrap {
-    width: calc(100% - 32px) !important;
-    max-width: 100% !important;
+  #hurricane .container {
+    width: calc(100% - 32px);
+    max-width: 100%;
   }
 
-  #hs-page .hs-nav {
-    min-height: 58px !important;
-    gap: 8px !important;
-    font-size: 10px !important;
+  #hurricane .nav { min-height: 57px; }
+  #hurricane .brand { font-size: 10px; letter-spacing: .3px; }
+  #hurricane .nav-note { font-size: 8px; letter-spacing: .4px; }
+
+  #hurricane .hero { padding: 45px 0 65px; }
+  #hurricane .chip { padding: 8px 12px; font-size: 9px; letter-spacing: .7px; }
+
+  #hurricane .logo-wrap {
+    width: 175px;
+    height: 175px;
+    margin: 28px auto;
   }
 
-  #hs-page .hs-nav small {
-    font-size: 8px !important;
-    text-align: right !important;
+  #hurricane .logo-wrap img {
+    width: 139px;
+    height: 139px;
   }
 
-  #hs-page .hs-hero {
-    padding: 43px 0 64px !important;
+  #hurricane .overline {
+    font-size: 9px;
+    letter-spacing: 1.2px;
   }
 
-  #hs-page .hs-chip {
-    max-width: 100% !important;
-    padding: 8px 12px !important;
-    font-size: 9px !important;
-    letter-spacing: 1px !important;
+  #hurricane h1 {
+    width: 100%;
+    max-width: 100%;
+    margin: 13px 0 17px;
+    font-size: clamp(35px, 9.3vw, 48px);
+    line-height: 1.12;
+    letter-spacing: -1.6px;
+    overflow-wrap: break-word;
   }
 
-  #hs-page .hs-logo {
-    width: 170px !important;
-    height: 170px !important;
-    margin: 27px auto 28px !important;
+  #hurricane .hero-text { font-size: 13px; line-height: 1.75; }
+  #hurricane .button {
+    width: min(100%, 330px);
+    min-height: 52px;
+    padding: 13px;
+    font-size: 10px;
+    letter-spacing: .4px;
   }
 
-  #hs-page .hs-logo img {
-    width: 135px !important;
-    height: 135px !important;
+  #hurricane .hero-small { font-size: 9px; line-height: 1.7; }
+  #hurricane .bar { padding: 13px 8px; font-size: 8px; letter-spacing: .2px; }
+  #hurricane .section { padding: 60px 0 45px; }
+  #hurricane h2 { font-size: 30px; }
+  #hurricane .cards { grid-template-columns: 1fr; gap: 13px; }
+  #hurricane .card { min-height: 0; padding: 21px; }
+
+  #hurricane .feature {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 45px;
+    padding: 23px 20px;
   }
 
-  #hs-page .hs-overline {
-    font-size: 9px !important;
-    letter-spacing: 1.5px !important;
-    line-height: 1.6 !important;
-  }
+  #hurricane .final { padding: 58px 0 75px; }
 
-  #hs-page h1 {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 13px auto 17px !important;
-    font-size: clamp(35px, 9.5vw, 47px) !important;
-    line-height: 1.12 !important;
-    letter-spacing: -1.5px !important;
-    overflow-wrap: break-word !important;
+  #hurricane .ambient::before,
+  #hurricane .ambient::after {
+    width: 380px;
+    height: 380px;
+    filter: blur(70px);
   }
+}
 
-  #hs-page h1 span {
-    display: block !important;
+@media (prefers-reduced-motion: reduce) {
+  #hurricane *,
+  #hurricane *::before,
+  #hurricane *::after {
+    animation: none !important;
+    transition: none !important;
   }
-
-  #hs-page .hs-lead {
-    max-width: 100% !important;
-    font-size: 13px !important;
-    line-height: 1.75 !important;
-  }
-
-  #hs-page .hs-button {
-    width: 100% !important;
-    max-width: 330px !important;
-    min-height: 53px !important;
-    padding: 13px 15px !important;
-    font-size: 10px !important;
-    letter-spacing: .5px !important;
-  }
-
-  #hs-page .hs-note {
-    font-size: 9px !important;
-    line-height: 1.8 !important;
-  }
-
-  #hs-page .hs-strip {
-    padding: 13px 8px !important;
-    font-size: 8px !important;
-    line-height: 1.8 !important;
-    letter-spacing: .3px !important;
-  }
-
-  #hs-page .hs-section {
-    padding: 58px 0 45px !important;
-  }
-
-  #hs-page h2 {
-    font-size: 30px !important;
-    line-height: 1.22 !important;
-  }
-
-  #hs-page .hs-cards {
-    grid-template-columns: 1fr !important;
-    gap: 13px !important;
-  }
-
-  #hs-page .hs-card {
-    min-height: 0 !important;
-    padding: 21px !important;
-  }
-
-  #hs-page .hs-feature {
-    grid-template-columns: 1fr !important;
-    gap: 13px !important;
-    margin-top: 46px !important;
-    padding: 24px 20px !important;
-  }
-
-  #hs-page .hs-final {
-    padding: 55px 0 72px !important;
+  #hurricane .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
 </style>
 
+<div id="hurricane">
+  <div class="ambient"></div>
+
+  <div class="container">
+    <div class="nav">
+      <div class="brand">HURRICANE <span>✦</span> SURESHOTS</div>
+      <div class="nav-note">THE COMMUNITY</div>
+    </div>
+
+    <section class="hero reveal">
+      <div class="chip">✦ THE NEXT WAVE STARTS HERE</div>
+
+      <div class="logo-wrap">
+        <div class="logo-ring"></div>
+        <img
+          alt="Hurricane of Sureshots logo"
+          src="data:image/webp;base64,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">
+      </div>
+
+      <div class="overline">A COMMUNITY THAT MOVES TOGETHER</div>
+      <h1>HURRICANE OF <span>SURESHOTS</span></h1>
+
+      <p class="hero-text">
+        Stay connected with a community full of energy.
+        <strong>Join for fresh daily updates</strong>, new posts,
+        announcements, and community conversations.
+      </p>
+
+      <a class="button"
+         href="https://t.me/+RpEUSyfWc_Q3YTg1"
+         target="_blank"
+         rel="noopener noreferrer">
+        JOIN TELEGRAM COMMUNITY &nbsp; ↗
+      </a>
+
+      <p class="hero-small">
+        ✦ DAILY UPDATES &nbsp; ✦ NEW POSTS &nbsp; ✦ COMMUNITY
+      </p>
+    </section>
+  </div>
+
+  <div class="bar">
+    ✦ DAILY UPDATES &nbsp;&nbsp; ✦ COMMUNITY FIRST &nbsp;&nbsp; ✦ STAY CONNECTED
+  </div>
+
+  <div class="container">
+    <section class="section reveal">
+      <div class="label">WHAT YOU'LL FIND INSIDE</div>
+      <h2>More than a channel.<br>A place to stay connected.</h2>
+
+      <p class="intro">
+        There is always something new to catch up on. Open the community
+        to see recent posts, follow announcements, and stay in the loop.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">✦</div>
+          <h3>New updates every day</h3>
+          <p>Check in regularly for fresh posts and the latest community updates.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">◉</div>
+          <h3>One dedicated space</h3>
+          <p>Follow community conversations and announcements in one place.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">↗</div>
+          <h3>Easy to join</h3>
+          <p>Tap the button, open Telegram, and become part of the community.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div>
+          <div class="label">STAY IN THE LOOP</div>
+          <h2>Fresh energy.<br>Every single day.</h2>
+          <p>
+            Follow the latest community posts whenever you want.
+            Join now and make it part of your daily check-in.
+          </p>
+        </div>
+
+        <div>
+          <div class="step"><b>01</b> Open the Telegram channel</div>
+          <div class="step"><b>02</b> Join the community</div>
+          <div class="step"><b>03</b> Catch up with new posts</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final reveal">
+      <div class="label">YOUR INVITATION IS HERE</div>
+      <h2>Ready to join the hurricane?</h2>
+      <p>Be part of the community and stay close to every new update.</p>
+
+      <a class="button"
+         href="https://t.me/+RpEUSyfWc_Q3YTg1"
+         target="_blank"
+         rel="noopener noreferrer">
+        JOIN TELEGRAM COMMUNITY &nbsp; ↗
+      </a>
+    </section>
+  </div>
+
+  <div class="footer">ADS BY <strong>FLOX ADS</strong></div>
+</div>
+
 <script>
-/* Custom HTML block mein viewport setting missing ho to add karo */
 (function () {
   if (!document.querySelector('meta[name="viewport"]')) {
-    var viewport = document.createElement('meta');
-    viewport.name = 'viewport';
-    viewport.content = 'width=device-width, initial-scale=1';
-    document.head.appendChild(viewport);
+    var meta = document.createElement('meta');
+    meta.name = 'viewport';
+    meta.content = 'width=device-width, initial-scale=1';
+    document.head.appendChild(meta);
   }
+
+  var page = document.getElementById('hurricane');
+  if (!page) return;
+
+  var elements = page.querySelectorAll('.reveal');
+
+  if (!('IntersectionObserver' in window)) {
+    elements.forEach(function (el) {
+      el.classList.add('visible');
+    });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  elements.forEach(function (el) {
+    observer.observe(el);
+  });
 })();
 </script>
