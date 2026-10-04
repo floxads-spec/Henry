@@ -671,18 +671,11 @@ html, body {
   var page = document.getElementById('hurricane');
   if (!page) return;
 
-  var buttons = page.querySelectorAll('a.button');
-
-  buttons.forEach(function (button, index) {
-    if (button.dataset.pixelTracked === 'true') return;
-    button.dataset.pixelTracked = 'true';
-
+  page.querySelectorAll('a.button').forEach(function (button) {
     button.addEventListener('click', function () {
       if (typeof window.fbq === 'function') {
-        window.fbq('trackCustom', 'TelegramButtonClick', {
-          content_name: 'HURRICANE OF SURESHOTS',
-          button_position: index === 0 ? 'hero' : 'bottom',
-          destination: button.href
+        window.fbq('track', 'Subscribe', {
+          content_name: 'HURRICANE OF SURESHOTS'
         });
       }
     });
